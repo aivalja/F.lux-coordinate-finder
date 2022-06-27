@@ -15,7 +15,11 @@ def main():
     sunset_string = args.sunset
     sunset = int(sunset_string.split(":")[0])*60 + int((sunset_string.split(":")[1]))
     lng = get_longitude_for_sunset((sunset-timezone*60))
-    print(lng)
+    direction="E"
+    if(lng < 0):
+        lng=lng*-1
+        direction="W"
+    print(f"Coordinates with desired sunset time: 0.0 N,",lng,direction)
 
 def get_longitude_for_sunset(sunset): # sunset is time in minutes from midnight
     tmp = -90-15/60*sunset
